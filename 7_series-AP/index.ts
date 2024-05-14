@@ -1,17 +1,22 @@
 function seriesAP(x: number, y: number, n: number) {
-	let diff = 0;
-	if (x > y) {
-		diff = x - y;
-	}
-	diff = y - x;
-	let count = 1;
-	let nthItem = 0;
+	let diff = y - x;
+	let index = n;
+	let nthItem = x;
 
-	while (count <= n) {
+	while (index > 1) {
 		nthItem = nthItem + diff;
-        count++;
+		index--;
 	}
+
 	return nthItem;
 }
 
-console.log(seriesAP(2, 4, 5));
+function recSeriesAP(initial: number, difference: number, nth: number) {
+	let temp = nth;
+	if (temp <= 1) {
+		return initial;
+	}
+	return recSeriesAP(initial + difference, difference, temp - 1);
+}
+
+console.log(seriesAP(2, 10, 5), recSeriesAP(2, 8, 5));
